@@ -22,7 +22,7 @@ project-analysis/
 
 ## 配置
 
-在 `document/.mcp_env` 文件中添加：
+在 `.mcp_env` 文件中添加：
 
 ```
 MCP_GITHUB_TOKEN=你的GitHub令牌
