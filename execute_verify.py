@@ -56,36 +56,48 @@ VERIFICATION_FLOW_CONFIG = {
 # 验证配置 - 根据实际需求修改以下内容
 VERIFICATION_CONFIG = {
     # 目标仓库信息
-    "target_repo": "example-repo",  # 替换为你的仓库名
+    "target_repo": "project-analysis",  # 替换为你的仓库名
     
     # 目标文件信息（需验证的文件）
     "target_file": {
-        "path": "documents/report.md",  # 替换为你的文件路径
+        "path": "document/analysis-report.md",  # 替换为你的文件路径
         "branch": "main"  # 替换为目标分支
     },
     
     # 必需结构（文件必须包含的内容，如章节标题、表格头部）
     "required_structures": [
-        "# 项目报告",  # 替换为你的必需标题
+        "# 项目分析报告",  # 替换为你的必需标题
         "## 汇总统计",  # 替换为你的必需章节
         "| 指标 | 数值 |"  # 替换为你的必需表格头部
     ],
     
     # 内容验证规则（支持 stat_match/regex_match/text_match，可增删）
     "content_rules": [
-        # 规则1：统计数据匹配
+        # 规则1：代码行数统计
         {
             "type": "stat_match",
-            "target": "项目总数：",
-            "expected": "100"
+            "target": "代码行数",
+            "expected": "15800"
         },
-        # 规则2：正则匹配
+        # 规则2：提交次数统计
+        {
+            "type": "stat_match",
+            "target": "提交次数",
+            "expected": "324"
+        },
+        # 规则3：团队成员统计
+        {
+            "type": "stat_match",
+            "target": "团队成员",
+            "expected": "8"
+        },
+        # 规则4：正则匹配
         {
             "type": "regex_match",
-            "target": "联系人邮箱",
+            "target": "团队成员邮箱",
             "expected": r"\w+@\w+\.\w+"  # 匹配通用邮箱格式
         },
-        # 规则3：固定文本匹配
+        # 规则5：固定文本匹配
         {
             "type": "text_match",
             "target": "项目状态",
@@ -95,7 +107,7 @@ VERIFICATION_CONFIG = {
     
     # 提交记录验证（可选，支持模糊匹配）
     "commit_verification": {
-        "msg_pattern": "添加项目报告",  # 提交消息关键词
+        "msg_pattern": "项目报告|document|update",  # 提交消息关键词
         "max_commits": 10  # 搜索最近N条提交
     }
 }
